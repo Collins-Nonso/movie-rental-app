@@ -2,6 +2,7 @@
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const movieRoutes = require("./routes/movieRoutes");
 
 const app = express();
 
@@ -35,6 +36,9 @@ app.get("/api/v1/health", (req, res) => {
         timestamp: new Date().toISOString()
     });
 });
+
+// Movie API routes
+app.use("/api/v1/movies", movieRoutes);
 
 // Handle unknown routes
 app.use((req, res) => {
